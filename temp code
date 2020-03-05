@@ -53,7 +53,34 @@ void loop() {
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
   }
-
+  int ff = f;
+  int condition = 54;
+  // Turn on relay if temp reaches a certain point--------------------------------------------------------------------
+  pinMode(D1, OUTPUT);
+  /*digitalWrite(D1, HIGH);
+  delay(2000);
+  digitalWrite(D1, LOW);
+  delay(2000);*/
+  //digitalWrite(D1, LOW);
+  //delay(2000);
+  if (ff <= condition )
+  {
+    digitalWrite(D1, LOW);
+    Serial.print("\nturn off\n");
+    delay(120000); // 2 min delay
+  }
+  else 
+  {
+    digitalWrite(D1 , HIGH); // When the temp goes above 54, the fan turns on 
+   // delay(2000);
+    Serial.print("\nturn on\n");
+    delay(120000); // 2 min delay
+  } 
+  
+  
+  
+  
+  //-----------------------------------------------------------------------------------------------------------------------
   // Compute heat index in Fahrenheit (the default)
   float hif = dht.computeHeatIndex(f, h);
   // Compute heat index in Celsius (isFahreheit = false)
